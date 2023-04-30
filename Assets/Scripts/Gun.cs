@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
                 _shotSound.Play();
                 _flash.SetActive(true);
 
-                Invoke("HideFlash", 0.08f);
+                Invoke(nameof(HideFlash), 0.08f);
             }
         }
     }
