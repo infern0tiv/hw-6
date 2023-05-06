@@ -10,6 +10,8 @@ public class LootHeal : MonoBehaviour
     {
         if(other.attachedRigidbody.GetComponent<PlayerHealth>() is PlayerHealth player)
         {
+            if (player.Health >= player.MaxHealth) return;
+
             player.AddHealth(_healthValue);
             Destroy(gameObject);
         }

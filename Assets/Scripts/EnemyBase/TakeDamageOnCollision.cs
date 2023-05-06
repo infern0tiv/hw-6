@@ -7,14 +7,7 @@ public class TakeDamageOnCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // почему collision.rigidbody, а не collision.gameObject ???
-        if (collision.rigidbody && collision.rigidbody.GetComponent<Bullet>())
-        {
-            _enemyHealth.TakeDamage(1);
-        }
-        if(_dieOnAnyCollision)
-        {
-            _enemyHealth.TakeDamage(int.MaxValue);
-        }
+        if (_dieOnAnyCollision) _enemyHealth.TakeDamage(int.MaxValue);
+        else if (collision.rigidbody && collision.rigidbody.GetComponent<Bullet>()) _enemyHealth.TakeDamage(1);
     }
 }

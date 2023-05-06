@@ -1,20 +1,24 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Blink : MonoBehaviour
 {
     [SerializeField] private Renderer[] _renderers;
 
-    private Color[][] _defaultEmissionColors;
     private float blinkTime = 1f;
+
+    private List<Color>[] _defaultEmissionColors;
 
     private void Start()
     {
-        for(int i = 0; i < _renderers.Length; i++)
+        _defaultEmissionColors = new List<Color>[_renderers.Length];
+        for (int i = 0; i < _renderers.Length; i++)
         {
-            for(int j = 0; j < _renderers[i].materials.Length; j++)
+            _defaultEmissionColors[i] = new List<Color>();
+            for (int j = 0; j < _renderers[i].materials.Length; j++)
             {
-                _defaultEmissionColors[i][j] = _renderers[i].materials[j].GetColor("_EmissionColor");
+                _defaultEmissionColors[i].Add(_renderers[i].materials[j].GetColor("_EmissionColor"));
             }
         }
     }
@@ -28,18 +32,27 @@ public class Blink : MonoBehaviour
     {
         for (float t = 0; t < blinkTime; t += Time.deltaTime)
         {
-            for (int i = 0; i < _renderers.Length; i++)
-            {
-                for (int j = 0; j < _renderers[i].materials.Length; j++)
-                {
-                    _renderers[i].materials[j].SetColor("_EmissionColor", new Color(Mathf.Sin(t * 30) * .5f + .5f, 0, 0, 0));
-                }
-            }
-
+            SetColor(new Color(Mathf.Sin(t * 30) * .5f + .5f, 0, 0, 0));
             yield return null;
         }
 
-        // Не получилось вернуть свечение
+        ResetColor();
+    }
+
+    private void SetColor(Color color)
+    {
+        for (int i = 0; i < _renderers.Length; i++)
+        {
+            for (int j = 0; j < _renderers[i].materials.Length; j++)
+            {
+                _renderers[i].materials[j].SetColor("_EmissionColor", color);
+            }
+        }
+
+    }
+
+    private void ResetColor()
+    {
         for (int i = 0; i < _renderers.Length; i++)
         {
             for (int j = 0; j < _renderers[i].materials.Length; j++)
@@ -47,6 +60,5 @@ public class Blink : MonoBehaviour
                 _renderers[i].materials[j].SetColor("_EmissionColor", _defaultEmissionColors[i][j]);
             }
         }
-
     }
 }

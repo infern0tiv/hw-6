@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Hen : MonoBehaviour
@@ -15,7 +13,7 @@ public class Hen : MonoBehaviour
         _playerTransform = FindObjectOfType<PlayerMove>().transform;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Vector3 toPlayer = (_playerTransform.position - transform.position).normalized;
         Vector3 force = _rigidbody.mass * (toPlayer * _maxSpeed - _rigidbody.velocity) / _timeToReachSpeed;

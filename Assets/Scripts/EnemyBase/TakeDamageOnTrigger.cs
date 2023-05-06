@@ -7,13 +7,11 @@ public class TakeDamageOnTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.attachedRigidbody && collider.attachedRigidbody.GetComponent<Bullet>())
+        if (_dieOnAnyCollision && !collider.isTrigger) _enemyHealth.TakeDamage(int.MaxValue);
+        else if (collider.attachedRigidbody && collider.attachedRigidbody.GetComponent<Bullet>() is Bullet bullet)
         {
             _enemyHealth.TakeDamage(1);
-        }
-        if (_dieOnAnyCollision)
-        {
-            _enemyHealth.TakeDamage(int.MaxValue);
+            bullet.Hit();
         }
     }
 }
