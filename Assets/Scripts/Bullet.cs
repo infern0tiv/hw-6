@@ -13,6 +13,11 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Hit();
+    }
+
+    public void Hit()
+    {
         Instantiate(_effectPrafab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

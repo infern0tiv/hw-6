@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int _health = 5;
-    [SerializeField] private int _maxHealth = 8;
+    [SerializeField] private int _health = 5; public int Health => _health;
+    [SerializeField] private int _maxHealth = 8; public int MaxHealth => _maxHealth;
     [SerializeField] private AudioSource _addHealth;
     [SerializeField] private HealthUI _healthUI;
 

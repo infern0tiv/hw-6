@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 78869993950f740139d28f42a389ac2a
+guid: cecd1d97bee21446383c4980007bf69e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: NutA
+    second: {fileID: 2100000, guid: 6b830575329e14328b0626c72f62f90d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: NutB
+    second: {fileID: 2100000, guid: fdcab1babbf5f45fd9887f57b69e459d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
